@@ -1,0 +1,590 @@
+#MainScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(IMGs/MainMenu.png);
+    background-size: auto;
+}
+
+#MainScreenContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 50vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(IMGs/MainMenu.png); /* Background image */
+    background-size:auto;
+    color: white;
+    
+}
+
+#tutorial {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh; /* Full screen height */
+    width: 30vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    border-radius: 50px;
+    font-size: 30px;
+    color: white;
+}
+
+#exitTutorialButton {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 30px;
+    font-family: fantasy;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#Credits {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh; /* Full screen height */
+    width: 30vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    border-radius: 50px;
+    font-size: 30px;
+    color: white;
+}
+
+#ExitCredits {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 30px;
+    font-family: fantasy;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 68px;
+    margin-bottom: 40px; /* Space between title and buttons */
+    color:#a316ce; /* Title color */
+}
+
+button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none;
+    padding: 15px 32px;
+    margin: 10px 0; /* Vertical spacing between buttons */
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+#startButton {
+    background-color: #2196F3; /* Blue button */
+}
+
+#startButton:hover {
+    background-color: #1976D2; /* Darker blue on hover */
+}
+
+#SettingsButton {
+    background-color: #FFC107; /* Yellow button */
+}
+
+#SettingsButton:hover {
+    background-color: #FFB300; /* Darker yellow on hover */
+}
+
+#TutorialButton {
+    background-color: #FF5722; /* Red button */
+}
+
+#TutorialButton:hover {
+    background-color: #E64A19; /* Darker red on hover */
+}
+
+#ExitButton {
+    background-color: #9E9E9E; /* Grey button */
+}
+
+#ExitButton:hover {
+    background-color: #757575; /* Darker grey on hover */
+}
+
+
+
+/* Basic reset for the body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* The container that holds the game content */
+#gameContainer {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-image: url(IMGs/firstLevelIMG.jpg);
+    background-size: auto;
+}
+
+/* Styling for the player and obstacles */
+img {
+    position: absolute;
+    display: block;
+}
+
+#score {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 30px;
+    font-family: fantasy;
+    padding: 10px 20px;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#score:hover {
+    background-color: #E64A19; /* Darker red on hover */
+    /* Make the score grow on hover */
+    transform: scale(1.4);
+}
+
+#restartButton {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 30px;
+    font-family: fantasy;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#time {
+    position: absolute;
+    top: 120px;
+    right: 40px;
+    font-size: 30px;
+    font-family: fantasy;
+    padding: 10px 20px;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#resetPositionButton {
+    position: absolute;
+    top: 120px;
+    left: 40px;
+    font-size: 30px;
+    font-family: fantasy;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#BunnyStart {
+    position: absolute;
+    top: 760px;
+    left: 746px;
+    font-size: 30px;
+    font-family: fantasy;
+    padding: 10px 20px;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#BunnyEnd {
+    position: absolute;
+    top: 760px;
+    left: 1646px;
+    font-size: 30px;
+    font-family: fantasy;
+    padding: 10px 20px;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#BunnyText {
+    position: absolute;
+    top: 760px;
+    left: 1052px;
+    font-size: 30px;
+    font-family: fantasy;
+    padding: 10px 20px;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#Bonus {
+    position: absolute;
+    top: 190px;
+    right: 40px;
+    font-size: 30px;
+    font-family: fantasy;
+    padding: 10px 20px;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#BunnyStart1 {
+    position: absolute;
+    top: 370px;
+    left: 1475px;
+    font-size: 30px;
+    font-family: fantasy;
+    padding: 10px 20px;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#BunnyEnd1 {
+    position: absolute;
+    top: 620px;
+    left: 1725px;
+    font-size: 30px;
+    font-family: fantasy;
+    padding: 10px 20px;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#conclusion {
+    display: none; /* Ensure it's visible */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-image: url("IMGs/Conclusion.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#finalgame {
+    display: none; /* Ensure it's visible */
+    width: 100vw;
+    height: 100vh;
+    background-image: url("IMGs/finalIMG.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#restartLevelButton {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 30px;
+    font-family: fantasy;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#FinishGame {
+    position: absolute;
+    top: 310px;
+    left: 400px;
+    font-size: 30px;
+    font-family: fantasy;
+    background-color: #FF5722; /* Red button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 1920px) {
+    body {
+        overflow-y: hidden;
+    }
+    #gameContainer {
+        width: 100vw;
+        height: 135vh;
+        transform: scale(0.74);
+        transform-origin: top;
+        overflow-y: hidden;
+    }
+
+    #Credits {
+        height: 40vh;
+        width: 40vw;
+    }
+
+    #tutorial {
+        height: 45vh;
+        width: 40vw;
+    }
+}
+
+#storyDiv1 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(./IMGs/first.jpg); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv1 p {
+    font-size: 30px;
+    margin-bottom: 400px;
+    background-color: green;
+    border-radius: 20%;
+}
+
+#storyDiv2 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(./IMGs/people.avif); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv2 p {
+    width: 70%;
+    font-size: 30px;
+    margin-bottom: 400px;
+    background-color: green;
+    border-radius: 20%;
+}
+
+#storyDiv3 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(./IMGs/beeer.jpg); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv3 p {
+    width: 70%;
+    font-size: 30px;
+    margin-bottom: 50px;
+    background-color: green;
+    border-radius: 20%;
+}
+
+#storyDiv4 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(./IMGs/celtic.jpg); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv4 p {
+    width: 70%;
+    font-size: 30px;
+    margin-bottom: 50px;
+    background-color: green;
+    border-radius: 20%;
+}
+
+#storyDiv5 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv5 p {
+    width: 70%;
+    font-size: 120px;
+    margin-bottom: 50px;
+}
+
+#storyDiv6 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(./IMGs/flybeer.jpg); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv6 p {
+    width: 70%;
+    font-size: 30px;
+    margin-bottom: 50px;
+    background-color: green;
+    border-radius: 20%;
+}
+
+
+#storyDiv7 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(./IMGs/beertype.jpg); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv7 p {
+    width: 70%;
+    font-size: 30px;
+    margin-bottom: 50px;
+    background-color: green;
+    border-radius: 20%;
+}
+
+#storyDiv8 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(./IMGs/beer3.jpg); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv8 p {
+    width: 70%;
+    font-size: 30px;
+    margin-bottom: 50px;
+    background-color: green;
+    border-radius: 20%;
+}
+
+#storyDiv9 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(./IMGs/anim.png); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv9 p {
+    width: 70%;
+    font-size: 30px;
+    margin-bottom: 50px;
+    background-color: green;
+    border-radius: 20%;
+}
+
+#storyDiv10 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    background-color: #FF5722; /* Light background */
+    font-family: fantasy; /* Font style */
+    text-align: center; /* Center text */
+    background-image: url(./IMGs/cigar.jpg); /* Background image */
+    background-size:auto;
+    color: white;
+}
+
+#storyDiv10 p {
+    width: 70%;
+    font-size: 30px;
+    margin-bottom: 50px;
+    background-color: green;
+    border-radius: 20%;
+}
