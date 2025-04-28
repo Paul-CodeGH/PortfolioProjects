@@ -1,1 +1,1 @@
-
+MonitoringApp is a Python Application I developed to practice my Python Skills. This application allows you to check you ram, cpu and gpu usage, but also how much disk space is still available. At this point, the App was made to work with Nvidia GPUs only, but it's still a WIP Project and it's going to be continued over the time.
