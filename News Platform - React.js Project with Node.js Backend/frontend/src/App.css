@@ -1,0 +1,403 @@
+/* reset defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: #282c34;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+nav .nav-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 1rem;
+}
+
+/* Push main content below the navbar */
+main {
+  margin-top: 100px;
+}
+
+/* Wrapper for page content */
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* ==================================================================
+   NAV ITEMS DEFAULT STYLES
+   (links, buttons, greeting, logout—white text, roomy hit area)
+   ================================================================== */
+nav .nav-container a,
+nav .nav-container button,
+nav .nav-container .user-greeting,
+nav .nav-container .logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;           /* match navbar height */
+  padding: 0 1rem;        /* horizontal space */
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #fff;            /* white text */
+  transition:
+          background-color 0.2s ease,
+          color            0.2s ease,
+          border-color     0.2s ease;
+}
+
+/* Clean up default button appearance */
+nav .nav-container button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ==================================================================
+   USER MENU / LOGOUT
+   (inline-reveal logout, keep next to greeting)
+   ================================================================== */
+.user-menu {
+  display: inline-flex;
+  position: relative;
+}
+.logout-btn {
+  visibility: hidden;     /* hide until hover */
+  margin-left: 0.25rem;   /* gap from greeting */
+  cursor: pointer;
+}
+
+/* Reveal logout on hover (but keep it inline) */
+.user-menu:hover .logout-btn {
+  visibility: visible;
+}
+
+/* ==================================================================
+   GENERIC HOVER — light bg + black border for links & greeting
+   ================================================================== */
+nav .nav-container a:hover,
+nav .nav-container .user-menu:hover .user-greeting {
+  background-color: #fff;
+  color: #282c34;
+  border-color: #000;
+}
+
+/* ==================================================================
+   LOGOUT HOVER — red bg + white text + red border (“always red”)
+   ================================================================== */
+nav .nav-container .user-menu:hover .logout-btn {
+  background-color: red;
+  color: #fff;
+  border-color: red;
+}
+
+
+/* Hero section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 1rem;
+  background: #f9f9f9;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin-bottom: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #282c34;
+}
+
+.hero-content p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.hero-image-wrap {
+  max-width: 800px;
+  width: 100%;
+}
+
+.hero-image-wrap p {
+  text-align: end;
+    font-size: 0.875rem;
+}
+
+.hero-image {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Hero image jump effect */
+.hero-image {
+  transition: transform 0.5s ease;
+}
+
+.hero-image:hover {
+  transform: translateY(-25px);
+}
+
+.site-footer {
+  background: #282c34;
+  color: #fff;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+.footer-container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px - 2rem);
+  padding: 1rem 0;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 500px;            /* a bit wider */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;                 /* more space between fields */
+  padding: 3rem;
+  background: #282c34;         /* dark background */
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  color: #fff;                 /* white text inside */
+}
+
+/* Labels and inputs stacked */
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+
+/* Inputs full-width */
+.auth-form input {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Button styling */
+.auth-form button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  background: #61dafb;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #282c34;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.auth-form button:hover {
+  background: #21a1f1;
+}
+
+/* grid wrapper for cards */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* card styles */
+.content-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.content-card-title {
+  margin: 1rem;
+  font-size: 1.25rem;
+  color: #282c34;
+}
+
+.content-card-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.content-card-desc {
+  margin: 0 1rem 1rem;
+  flex-grow: 1;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Hero image jump effect */
+.content-card img {
+  transition: transform 0.5s ease;
+}
+
+.content-card img:hover {
+  transform: translateY(-15px);
+}
+
+/* Hero image jump effect */
+.content-card {
+  transition: transform 0.5s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-15px);
+}
+
+/* Profile page centering */
+.profile-container {
+  display: flex;
+  justify-content: center;        /* horizontal center */
+  align-items: center;            /* vertical center */
+  min-height: calc(100vh - 60px - 3rem); /* viewport minus navbar + estimated footer */
+  padding: 1rem 0;
+}
+
+.profile-box {
+  width: 100%;
+  max-width: 400px;               /* limit box width */
+  background: #fff;               /* white background */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;             /* center text inside */
+}
+
+.profile-box h2 {
+  margin-bottom: 1rem;
+  color: #282c34;
+}
+
+.chat-agent-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #61dafb;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1001;
+}
+
+.chat-agent-window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 280px;
+  max-height: 360px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.chat-agent-header {
+  background: #61dafb;
+  color: #282c34;
+  padding: 8px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-agent-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.chat-agent-messages {
+  flex: 1;
+  padding: 8px;
+  overflow-y: auto;
+}
+
+.chat-agent-message {
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  max-width: 80%;
+}
+
+.chat-agent-message.bot {
+  background: #f1f1f1;
+  align-self: flex-start;
+}
+
+.chat-agent-message.user {
+  background: #61dafb;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.chat-agent-input-area {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chat-agent-input {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.chat-agent-send {
+  border: none;
+  background: #61dafb;
+  color: #fff;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
