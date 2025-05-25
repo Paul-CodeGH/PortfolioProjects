@@ -7,7 +7,7 @@ Make sure to have Python and TKINTER installed before running the application, e
 
 **<h2>Features</h2>**
 
-The software is connected to a SQLite3 database to ensure that all the Todos, including the completed ones remain saved until deleted manually by the user.
+The software is connected to a SQLite3 database to ensure that all the ToDos, including the completed ones remain saved until deleted manually by the user.
 
 The user has the option to create a new ToDo by filling out the Title and the Description. 
 
