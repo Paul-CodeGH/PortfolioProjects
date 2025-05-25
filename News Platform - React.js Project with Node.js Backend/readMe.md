@@ -2,6 +2,11 @@
 
 <h4>!!Make sure to run npm install in both folders, frontend and backend, and then within the backend folder run node index.js in the console. Also, make sure that Node.js is installed on your computer!!</h4>
 
+<img width="182" alt="Screenshot 2025-05-25 at 14 38 09" src="https://github.com/user-attachments/assets/df40475a-a423-4ba1-9454-2cc24897e488" /> <br/>
+
+<img width="171" alt="Screenshot 2025-05-25 at 14 38 19" src="https://github.com/user-attachments/assets/5ff35aa6-65ed-4e0e-90bc-eaf02b8e3c33" />
+
+
 <li>Main Page, containing a placeholder image</li>
 <img width="1470" alt="Screenshot 2025-05-25 at 14 20 17" src="https://github.com/user-attachments/assets/6535947c-bae8-4d0f-8e34-209740d8c2ef" />
 
