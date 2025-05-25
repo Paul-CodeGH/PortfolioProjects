@@ -19,6 +19,7 @@
 <li>Once logged in, the users can view the Dashboard Page, which is protected. Additionally the users can view their own profile.</li>
 <li>Hardcoded Admin User. The Admin can access the Admin View Page, were all the registered users are displayed. From there, the Admin can change user's role or delete a profile completely.</li>
 <li>The Website contains both, a working Navigation Bar, which greets the users once logged in, and a Footer.</li>
+<li>There is an integrated AI ChatBot (not using an actual API, just hardcoded answers at the moment)</li>
 
 **<h4>Features to be implemented</h4>**
 <li>Users can change their own password, upload a profile picture</li>
