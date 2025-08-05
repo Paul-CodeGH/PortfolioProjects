@@ -1,5 +1,5 @@
 ### 2D Jump and Run Game Developed in Android Studio using Kotlin
-## The game was developed entirely from scratch, without using any external Game Frameworks. I treat this Project as a Learning Experience and enjoyed building the Game.
+A mobile platformer developed with **Android Studio** and **Kotlin**, featuring motion control, jumping mechanics and animated UI effects.
 
 <img width="1000" height="515" alt="image" src="https://github.com/user-attachments/assets/de5d62d4-bd90-442e-9fd3-5159107e31c5" />
 
