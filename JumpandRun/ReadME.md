@@ -6,8 +6,12 @@ A mobile platformer developed with **Android Studio** and **Kotlin**, featuring 
 Clone the repository and open it in Android Studio:
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/Paul-CodeGH/PortfolioProjects.git
 ```
+
+```text
+Then simply click the Run Button in the top-right-corner to run the game
+```text
 
 <img width="1000" height="515" alt="image" src="https://github.com/user-attachments/assets/de5d62d4-bd90-442e-9fd3-5159107e31c5" />
 
