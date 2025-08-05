@@ -13,6 +13,18 @@ git clone https://github.com/Paul-CodeGH/PortfolioProjects.git
 Then simply click the Run Button in the top-right-corner to run the game
 ```
 
+```bash
+Consider that this game was meant to run on a mobile phone. To do so, move the curson to the upper-left-corner, click on Build -> Generate App Bundles or APKs -> Generate APKs
+```
+
+```bash
+A debug file will be generated inside the JumpandRun/app/build/outputs/aps/debug/app-debug.apk which you can upload on your Android Smartphone, install it and Play the Game.
+```
+
+## Controlls
+
+Tilt your phone to move the character to the left or right and touch the screen to make it jump, as easy as that
+
 <img width="1000" height="515" alt="image" src="https://github.com/user-attachments/assets/de5d62d4-bd90-442e-9fd3-5159107e31c5" />
 
 
