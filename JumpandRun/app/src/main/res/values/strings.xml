@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Jump and Run</string>
+    <string name="welcome_message">Welcome to Jump and Run!</string>
+    <string name="start_game_button_text">Start Game</string>
+    <string name="settings_button_text">Settings</string>
+    <string name="exit_game_button_text">Exit Game</string>
+</resources>
