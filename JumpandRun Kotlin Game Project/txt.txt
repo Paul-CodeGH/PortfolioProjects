@@ -1,0 +1,2 @@
+This is my first Kotlin Project I developed using Android Studio.
+This project is a jump and run mobile game, developed entirely from Scratch using Kotlin with no other frameworks.
