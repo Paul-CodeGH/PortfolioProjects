@@ -11,7 +11,7 @@ git clone https://github.com/Paul-CodeGH/PortfolioProjects.git
 
 ```text
 Then simply click the Run Button in the top-right-corner to run the game
-```text
+```
 
 <img width="1000" height="515" alt="image" src="https://github.com/user-attachments/assets/de5d62d4-bd90-442e-9fd3-5159107e31c5" />
 
@@ -19,5 +19,7 @@ Then simply click the Run Button in the top-right-corner to run the game
 This is a mobile platformer game developed in Android Studio using Kotlin. The player controls a character in a vibrant 2D environment by tilting the phone to move left or right and tapping the screen to jump. The game features a variety of obstacles, each with its own unique collision behavior that affects the player differently, creating a dynamic and engaging gameplay experience.
 
 In addition to the core mechanics, the main menu screen includes a visually appealing background animation with softly floating colored bubbles that add a playful and polished touch to the interface. The project demonstrates motion-based controls, responsive touch interaction, collision handling and animated visual elements designed specifically for Android devices.
+
+<img width="1000" height="511" alt="image" src="https://github.com/user-attachments/assets/bc887857-9ab8-4c4e-9516-77611857de03" />
 
 
