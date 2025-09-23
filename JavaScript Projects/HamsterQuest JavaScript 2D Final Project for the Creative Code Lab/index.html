@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamster Quest</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="EndScreen">
+        <h1>You finished the Game! Congratulations!</h1>
+        <button id="restartButton">Restart</button>
+    </div>
+    <div id="mainMenu">
+        <button id="startButton">Start</button>
+        <button id="Controls">Guide</button>
+        <div id="controlsModal">
+            <h1>Controls and Information</h1>
+            <div>
+            <p>Use the arrow keys to move and jump, or W A D. </p>
+            <p>Some obstacles can be destroyed using 'S' or 'ArrowDown', some can be moved! </p>
+            <p>Use the top indicator to check how much each object can still be moved until their position resets!</p>
+            <p>When reaching the portals, you gotta jump into it!</p>
+            <p id="hide">Click to hide this!</p>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas" width="1920" height="1080"></canvas>
+    <script type="module" src="game.js"></script>
+</body>
+</html>

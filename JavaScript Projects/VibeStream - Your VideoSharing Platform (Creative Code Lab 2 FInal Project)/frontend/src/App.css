@@ -1,0 +1,769 @@
+/* reset defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: #282c34;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+nav .nav-container {
+  max-width: 90%; /* max width for larger screens */
+  margin: 0 auto;
+  display: flex;
+  align-items: center; /* vertical centering */
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 1rem;
+}
+
+/* NAV ITEMS DEFAULT STYLES */
+nav .nav-container a,
+nav .nav-container button,
+nav .nav-container .user-greeting,
+nav .nav-container .logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;       /* uniform height */
+  padding: 0 1rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #fff;
+  background: none;
+  transition:
+          background-color 0.2s ease,
+          color            0.2s ease,
+          border-color     0.2s ease;
+  cursor: pointer;
+}
+
+/* Logo sizing */
+nav .nav-container .logo-link {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+nav .nav-container .nav-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* Search input */
+nav .nav-container .nav-search {
+  height: 36px;
+  width: 1000px;
+  padding: 0 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin: 0 1rem;
+  background: #fff;
+  color: #000;
+  font-size: 0.9rem;
+}
+nav .nav-container .nav-search:focus {
+  outline: none;
+  border-color: #61dafb;
+  box-shadow: 0 0 0 2px rgba(97,218,251,0.3);
+}
+
+/* USER MENU / LOGOUT (stacked below on hover) */
+.user-menu {
+  display: inline-block;
+  position: relative;
+}
+.logout-btn {
+  position: absolute;
+  top: 100%;     /* directly below the navbar */
+  left: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 60px;
+  background-color: #282c34;
+  color: #fff;
+}
+.user-menu:hover .logout-btn {
+  visibility: visible;
+}
+
+/* GENERIC HOVER — light bg + black border */
+nav .nav-container a:hover,
+nav .nav-container .user-greeting:hover {
+  background-color: #fff;
+  color: #282c34;
+  border-color: #000;
+}
+
+/* LOGOUT HOVER — red bg + white text + red border */
+nav .nav-container .logout-btn:hover {
+  background-color: red;
+  color: #fff;
+  border-color: red;
+}
+
+/* Push main content below the navbar and above the fixed footer */
+main {
+  margin-top: 100px;
+  margin-bottom: 80px; /* space for fixed footer so content can scroll freely */
+}
+
+/* Wrapper for page content */
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Hero section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 1rem;
+  background: #f9f9f9;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin-bottom: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #282c34;
+}
+
+.hero-content p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.hero-image-wrap {
+  max-width: 800px;
+  width: 100%;
+}
+
+.hero-image-wrap p {
+  text-align: end;
+  font-size: 0.875rem;
+}
+
+.hero-image {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.5s ease;
+}
+
+.hero-image:hover {
+  transform: translateY(-25px);
+}
+
+/* Footer */
+.site-footer {
+  background: #282c34;
+  color: #fff;
+  padding: 1rem 0;
+  /* fixed via inline style in Footer.jsx */
+}
+
+.footer-container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ===== Auth pages two-panel layout ===== */
+.auth-main {
+  display: flex;
+  min-height: calc(100vh - 60px - 2rem);
+}
+
+.auth-panel,
+.auth-aside {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Aside panel (text + button) */
+.auth-aside {
+  flex-direction: column;
+  background: #3F44D1;
+  text-align: center;
+  color: #fff;
+}
+
+.auth-aside h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.auth-aside p {
+  margin-bottom: 1rem;
+}
+
+.auth-aside button {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+
+.auth-aside button:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Form panel background */
+.auth-panel {
+  background: #fff;
+}
+
+/* Form container */
+.auth-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 3rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  color: #282c34;
+}
+
+/* Stack labels and inputs */
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+
+/* Full-width inputs with stroke */
+.auth-form input {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+/* Input focus state */
+.auth-form input:focus {
+  outline: none;
+  border-color: #61dafb;
+  box-shadow: 0 0 0 2px rgba(97,218,251,0.3);
+}
+
+/* Centered submit button */
+.auth-form button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+  align-self: center;
+  margin-top: 1rem;
+}
+
+.auth-form button:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Grid wrapper for cards */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Card styles */
+.content-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.content-card-title {
+  margin: 1rem;
+  font-size: 1.25rem;
+  color: #282c34;
+}
+
+.content-card-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.content-card-image:hover {
+  transform: translateY(-15px);
+}
+
+.content-card-desc {
+  margin: 0 1rem 1rem;
+  flex-grow: 1;
+  color: #555;
+  line-height: 1.4;
+}
+
+.content-card:hover {
+  transform: translateY(-15px);
+}
+
+/* Profile page centering */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px - 3rem);
+  padding: 1rem 0;
+}
+
+.profile-box {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.profile-box h2 {
+  margin-bottom: 1rem;
+  color: #282c34;
+}
+
+/* Chat agent styles */
+.chat-agent-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #61dafb;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1001;
+}
+
+.chat-agent-window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 280px;
+  max-height: 360px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.chat-agent-header {
+  background: #61dafb;
+  color: #282c34;
+  padding: 8px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-agent-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.chat-agent-messages {
+  flex: 1;
+  padding: 8px;
+  overflow-y: auto;
+}
+
+.chat-agent-message {
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  max-width: 80%;
+}
+
+.chat-agent-message.bot {
+  background: #f1f1f1;
+  align-self: flex-start;
+}
+
+.chat-agent-message.user {
+  background: #61dafb;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.chat-agent-input-area {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chat-agent-input {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.chat-agent-send {
+  border: none;
+  background: #61dafb;
+  color: #fff;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Left panel in Chat.jsx: purple background with white text */
+.chat-container > div:first-child {
+  background-color: #3F44D1;
+  color: #fff;
+}
+
+/* Ensure each user button stays white on that purple background */
+.chat-container > div:first-child button {
+  background: transparent;
+  border: none;
+  color: #000 !important;
+}
+
+/* Subtle hover effect */
+.chat-container > div:first-child button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Add visible border around the entire chat container */
+.chat-container {
+  border: 1px solid #ccc;
+  border-radius: 35px;
+  overflow: hidden; /* ensure child corners clip */
+}
+
+/* Left user list panel */
+.chat-container > div:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+/* Right chat window panel */
+.chat-container > div:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Left-side user list: make each user item taller, larger font, rounded, playful font, and bigger avatars */
+.chat-container > div:first-child button {
+  height: 60px;               /* increase item height */
+  margin-bottom: 0.5rem;      /* a bit more spacing */
+  border-radius: 8px;         /* rounded corners */
+  font-size: 1.1rem;          /* slightly larger text */
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* playful font */
+  padding: 0.75rem;           /* ensure good click area */
+  background-color: #3F44D1;  /* keep selected/bg styling if desired */
+  color: #000;                /* black text for readability */
+}
+
+/* Bigger, rounded avatars */
+.chat-container > div:first-child button img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;         /* circle */
+  margin-right: 1rem;         /* spacing from text */
+  object-fit: cover;
+}
+
+/* Optional: change background on hover */
+.chat-container > div:first-child button:hover {
+  background-color: #5A52D4;  /* a lighter purple on hover */
+}
+
+/* Apply the same playful font to the chat container so that both
+   the "Select a user…" placeholder and all chat message text use it */
+.chat-container {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+
+
+/* ========== Mobile / Small-screen Adjustments ========== */
+@media (max-width: 768px) {
+  /* Hero (PublicPage) stacks vertically */
+  .hero {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  .hero-content {
+    margin-bottom: 1.5rem;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .hero-image {
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* Feature highlights grid becomes one column */
+  .hero + section {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Auth pages (Login/Register) stack panels */
+  .auth-main {
+    flex-direction: column;
+  }
+  .auth-panel,
+  .auth-aside {
+    width: 100%;
+    padding: 1.5rem;
+  }
+  .auth-aside {
+    border-radius: 0 0 8px 8px;
+  }
+  .auth-form {
+    padding: 2rem;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  /* Inputs and buttons full-width */
+  .auth-form input,
+  .auth-form textarea,
+  .auth-form select {
+    width: 100%;
+  }
+  .auth-form button {
+    align-self: stretch;
+    margin-left: 0;
+  }
+
+  /* Reduce top margin under navbar for main containers */
+  main .container {
+    padding-top: 1rem;
+  }
+
+  /* CategoryNav & TitleNav spacing */
+  .category-nav, /* if you have a class for it */
+  .title-nav {   /* likewise */
+    margin: 1rem 0;
+  }
+
+  /* Profile page reduction */
+  .profile-container {
+    padding: 0.5rem 0;
+  }
+  .profile-box {
+    padding: 1.5rem;
+  }
+}
+
+/* ========== MOBILE / SMALL-SCREEN STYLES FOR REMAINING PAGES ========== */
+@media (max-width: 768px) {
+  /* ------------------------------------------------------------
+     CHAT PAGE: stack panels and make form & lists full-width
+     ------------------------------------------------------------ */
+  .chat-container {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  .chat-container > div {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid #ccc;
+  }
+  .chat-container > div:last-child {
+    border-bottom: none;
+  }
+  .chat-container form {
+    flex-direction: column !important;
+  }
+  .chat-container form button {
+    margin-top: 0.5rem !important;
+    width: 100% !important;
+  }
+
+  /* ------------------------------------------------------------
+     VIDEO DETAIL: make video responsive & comments scrollable
+     ------------------------------------------------------------ */
+  video {
+    width: 100% !important;
+    height: auto !important;
+  }
+  /* CommentsSection wrapper: lowest specificity override */
+  .CommentsSection,
+  [class*="CommentsSection"] {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  /* ------------------------------------------------------------
+     VIDEOS / MYVIDEOS GRID: collapse to one column
+     ------------------------------------------------------------ */
+  /* overrides inline grid styles */
+  [style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ------------------------------------------------------------
+     UPLOAD VIDEO & PROFILE FORMS: full-width inputs & buttons
+     ------------------------------------------------------------ */
+  .profile-box,
+    /* you can add a className="upload-video-box" on that wrapper if desired */
+  .upload-video-box {
+    padding: 1rem !important;
+  }
+  .profile-box input,
+  .profile-box textarea,
+  .profile-box select,
+  .upload-video-box input,
+  .upload-video-box textarea,
+  .upload-video-box select {
+    width: 100% !important;
+  }
+  .profile-box button,
+  .upload-video-box button {
+    width: 100% !important;
+    margin-top: 1rem !important;
+  }
+
+  /* ------------------------------------------------------------
+     ADMIN PAGE: make table horizontally scrollable
+     ------------------------------------------------------------ */
+  /* wrap your <table> in a div if you need more control */
+  .container > div > table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  /* ------------------------------------------------------------
+     GENERAL: reduce side padding, tighten vertical gaps
+     ------------------------------------------------------------ */
+  main .container {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  /* title bars (TitleNav / CategoryNav) margin adjust */
+  [style*="margin: 1rem 0"] {
+    margin: 0.75rem 0 !important;
+  }
+}
+
+
+
+/* Mobile-only styles (≤768px) */
+@media (max-width: 768px) {
+  /* Ensure nav items are spaced */
+  .nav-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    position: relative;
+  }
+
+  /* Hide everything except the search input and the burger button */
+  .nav-container > .logo-link,
+  .nav-container > a,
+  .nav-container > .user-menu {
+    display: none;
+  }
+
+  /* Keep the search bar visible */
+  .nav-search {
+    display: block;
+    flex: 1 1 auto;
+    margin-right: 0.5rem;
+  }
+
+  /* Show the burger icon */
+  .nav-container .burger {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* Hidden slide-down menu container */
+  .nav-container .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 220px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    flex-direction: column;
+    padding: 1rem;
+    z-index: 1000;
+  }
+
+  /* Reveal the mobile-menu when .open is toggled on the container */
+  .nav-container.open .mobile-menu {
+    display: flex;
+  }
+
+  /* Style links/buttons inside the slide-down */
+  .nav-container .mobile-menu a,
+  .nav-container .mobile-menu button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 0.5rem 0;
+  }
+}

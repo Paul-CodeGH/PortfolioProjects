@@ -1,0 +1,30 @@
+/* frontend/src/routes/AdminPage.css */
+
+/* mobile only: center everything */
+@media (max-width: 768px) {
+
+    /* Turn the outer flex container into a column and center its items */
+    div[style*="justify-content: center"] {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* Override the inner “maxWidth: 800px” container to auto width and center */
+    div[style*="max-width: 800px"] {
+        width: auto !important;
+        margin: 0 auto !important;
+    }
+
+    /* Shrink the table to its contents and center it */
+    table {
+        width: auto !important;
+        margin: 0 auto !important;
+    }
+
+    /* Center any headings */
+    h2 {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}

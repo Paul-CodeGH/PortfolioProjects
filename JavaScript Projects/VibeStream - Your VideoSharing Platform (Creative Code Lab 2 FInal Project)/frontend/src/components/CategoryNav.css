@@ -1,0 +1,77 @@
+/* ——— keep your existing desktop styles intact ——— */
+
+/* make desktop list full-width flex */
+.desktop-categories {
+    display: flex;
+    width: 100%;
+}
+
+/* hide mobile parts by default */
+.mobile-categories {
+    display: none;
+}
+
+/* ——— mobile only (≤768px) ——— */
+@media (max-width: 768px) {
+    /* hide the desktop row */
+    .desktop-categories {
+        display: none !important;
+    }
+
+    /* show the mobile wrapper */
+    .mobile-categories {
+        display: flex;
+        position: relative;
+        align-items: center;
+    }
+
+    /* the “Categories” toggle button */
+    .cat-toggle {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.125rem;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+    .cat-toggle .arrow {
+        margin-left: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* the dropdown panel */
+    .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #3F44D1;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        flex-direction: column;
+        z-index: 999;
+        overflow: hidden;
+    }
+
+    /* reveal when wrapper has .open */
+    .category-nav-wrapper.open .mobile-menu {
+        display: flex !important;
+    }
+
+    /* dropdown items */
+    .mobile-menu button {
+        width: 100%;
+        background: transparent;
+        border: none;
+        color: #fff;
+        text-align: left;
+        padding: 0.75rem 1rem;
+        font-size: 1.125rem;
+        cursor: pointer;
+    }
+    .mobile-menu button:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+}

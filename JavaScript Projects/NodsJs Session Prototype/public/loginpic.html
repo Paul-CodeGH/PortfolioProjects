@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Confirm Pic</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 5.5rem;
+            margin: 50px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 2rem; /* Adjust the font size for better visibility */
+        }
+    </style>
+</head>
+<body>
+    <h1>Login Confirmed</h1>
+    <p>You will be redirected to the dashboard in <span id="countdown">5</span> seconds...</p>
+
+    <script>
+        let countdown = 5; // Set the countdown time in seconds
+        const countdownElement = document.getElementById('countdown');
+
+        const timer = setInterval(() => {
+            if (countdown > 0) {
+                countdownElement.textContent = countdown; // Update the displayed countdown
+                countdown--;
+            } else {
+                clearInterval(timer); // Clear the timer when it reaches zero
+                window.location.href = '/dashboard'; // Redirect to the dashboard
+            }
+        }, 1000); // 1000 milliseconds = 1 second
+    </script>
+</body>
+</html>

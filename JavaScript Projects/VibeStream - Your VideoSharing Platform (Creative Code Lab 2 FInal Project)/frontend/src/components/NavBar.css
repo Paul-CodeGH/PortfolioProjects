@@ -1,0 +1,107 @@
+/* frontend/src/components/NavBar.css */
+
+/* ——— keep your existing desktop styles intact ——— */
+
+/* hide mobile controls by default */
+.burger {
+    display: none !important;
+}
+.mobile-menu {
+    display: none !important;
+}
+
+/* ——— mobile only (≤768px) ——— */
+@media (max-width: 768px) {
+    .nav-container {
+        max-width: 100%;
+        padding: 0.5rem 0.8rem;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        position: relative;
+        overflow: visible; /* ensure dropdown isn’t clipped */
+    }
+
+    /* hide desktop links & logo & user-menu */
+    .nav-container > .logo-link,
+    .nav-container > a,
+    .nav-container > .user-menu {
+        display: none !important;
+    }
+
+    /* keep search bar visible */
+    .nav-search {
+        flex: 1 1 auto;
+        margin-right: 0.5rem;
+        border: 1px solid #000;
+        color: #000;
+    }
+
+    /* show burger icon on mobile */
+    .burger {
+        display: block !important;
+        background: none;
+        border: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        color: #000;
+    }
+
+    /* dropdown panel aligned to right, with extra bottom padding for logout */
+    .mobile-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: auto;
+        background: #fff;
+        border-top: 1px solid #000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        flex-direction: column;
+        padding: 0.6rem 0 80px; /* extra space for the logout button */
+        z-index: 9999;
+        display: none; /* hidden until .open */
+    }
+
+    /* reveal dropdown when open */
+    .nav-container.open .mobile-menu {
+        display: flex !important;
+    }
+
+    /* dropdown items */
+    .mobile-menu a,
+    .mobile-menu button {
+        display: block;
+        width: 100%;
+        padding: 0.6rem 1rem;
+        text-align: left;
+        text-decoration: none;
+        font-family: inherit;
+        font-size: 1rem;
+        color: #000 !important;
+        background: none;
+        border: none;
+        border-bottom: 1px solid #000;
+        cursor: pointer;
+    }
+
+    /* remove bottom border on last item */
+    .mobile-menu a:last-child,
+    .mobile-menu button:last-child {
+        border-bottom: none;
+    }
+
+    /* hover state */
+    .mobile-menu a:hover,
+    .mobile-menu button:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    /* ensure the logout button is fully visible */
+    .mobile-menu .logout-btn {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        margin-top: 0.5rem;
+        height: auto !important;
+        width: 100% !important;
+    }
+}

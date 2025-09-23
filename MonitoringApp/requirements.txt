@@ -1,6 +1,0 @@
-psutil
-tk
-asyncio
-pynvml
-matplotlib
-numpy

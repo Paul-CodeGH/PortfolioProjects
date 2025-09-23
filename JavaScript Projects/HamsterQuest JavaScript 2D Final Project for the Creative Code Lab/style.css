@@ -1,0 +1,146 @@
+body {
+    aspect-ratio: 16 / 9;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #222;
+    color: black;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+canvas {
+    border: 1px solid black;
+}
+#mainMenu {
+    background-image: url(./CSSIMGS/backgroundMain.png);
+    display: flex;
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Adjusts the position */
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mainMenu button {
+    margin-bottom: 5%;
+}
+
+#mainMenu button:first-child {
+    margin-top: 10%;
+}
+#gameCanvas {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+}
+
+button {
+    width: 300px;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    font-size: 30px;
+}
+
+button:hover {
+    background-color: red;
+}
+
+#score {
+    display: none; /* Changed to block to ensure it's visible */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #6e7f5a, #2f3b1b); /* Fancy gradient background */
+    color: #f7f7f7; /* Light text color for contrast */
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif; /* Fancy modern font */
+    font-size: 20px;
+    font-weight: 600; /* Slightly bolder text */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for a floating effect */
+    border: 2px solid #4d5b35; /* Darker border for a refined look */
+    transition: transform 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+/* Adding hover effect */
+#score:hover {
+    transform: scale(1.15); /* Slight scale effect on hover */
+}
+
+#controlsModal {
+    display: none; /* Hidden by default */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    border-radius: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the modal */
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-size: 30px;
+    color: #333;
+    z-index: 9999; /* Ensure it's on top of other elements */
+    -webkit-user-select: none; /* Chrome, Safari, Edge */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer */
+    user-select: none;         /* Standard */
+}
+#hide {
+    font-size: 20px
+}
+
+#EndScreen {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    border-radius: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the modal */
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+#EndScreen button:hover {
+    background-color: #fff;
+    color: royalblue;
+}
+
+#EndScreen h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-size: 50px;
+    color: #333;
+    z-index: 9999; /* Ensure it's on top of other elements */
+    -webkit-user-select: none; /* Chrome, Safari, Edge */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer */
+    user-select: none;         /* Standard */
+}
+
