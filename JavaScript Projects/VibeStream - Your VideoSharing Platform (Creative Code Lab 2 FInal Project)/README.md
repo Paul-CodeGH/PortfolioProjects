@@ -1,5 +1,7 @@
 Welcome to VibeStream, your go-to platform for discovering and sharing your favorite video experiences! This README will guide you through the setup and usage of the VibeStream application, which consists of a backend built with Node.js and Express, and a frontend developed using React.
 
+CRUD Project, where you can add and remove users, videos, comments, feedback, 1 to 1 messages and more. If you'd like to test the project, I can provide the URL of the hosted Website, which you can freely access. For security reasons, the database connection details could NOT be provided.
+
 First, ensure you have the necessary tools installed on your machine:
 - Node.js (version 14 or higher)
 - npm (Node Package Manager) - gets installed with Node.js
