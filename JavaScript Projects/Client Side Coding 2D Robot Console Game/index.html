@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Robot Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Add the main screen -->
+    <div id="loadingScreen">
+        <img src="GameIMGs/backgrIMG.jpeg" alt="Main">
+        <button id="startButton">Start Game</button>
+    </div>
+
+    <!-- Add the main map/board of the game --> 
+    <canvas id="gameCanvas" width = "1852" height = "783"></canvas>
+
+
+    <!-- Add the console for the game output --> 
+    <div id="console"></div>
+
+    <!-- Add the input field for the user to enter commands  -->
+    <input id="userInput" type="text" placeholder="Enter a command or type !help for a list of commands">
+
+    <div id="instructions">
+        <p>Instructions: </p>
+        <ul>
+            <li>Use up, down, left, and right to move the robot.</li>
+            <li>Use the arrow keys to move the robot #Cheating#.</li>
+            <li>Type "!help" for a list of commands.</li>
+        </ul>
+    </div>
+
+    <audio id="WinningSound" preload="auto">
+        <source src="GameSounds/WinningSound.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="clickSound" preload="auto">
+        <source src="GameSounds/clickSound.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="laughingSound" preload="auto">
+        <source src="GameSounds/laugh.mp3" type="audio/mp3">
+    </audio>
+
+
+    <div id="congratsDiv">
+        <p>CONGRATULATIONS!</p>
+        <p>You have completed the game!</p>
+        <p>Thanks for playing!</p>
+        <p>Refresh the page to play again</p>
+    </div>
+    
+
+
+
+
+    <script src="gameFull.js"></script>
+</body>
+</html>
