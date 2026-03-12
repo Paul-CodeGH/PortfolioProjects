@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamCart - The Ultimate Wishlist Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #6C63FF; /* Dreamy Purple */
+            --primary-dark: #5a52d5;
+            --accent-color: #00d2d3;  /* Fresh Teal */
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            color: var(--text-light);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- MOBILE MENU --- */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                gap: 0;
+                padding: 20px 0;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-links a:hover {
+                background-color: var(--bg-light);
+            }
+
+            .nav-links a.btn {
+                border-bottom: none;
+                margin: 10px 20px 0;
+            }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .tag {
+            background: #e1e1e1;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        /* --- ABOUT & USE CASE --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .highlight-box {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: var(--radius);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        /* --- FEATURES --- */
+        .features {
+            background-color: var(--bg-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* --- TEAM --- */
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            text-align: center;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 300px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background-color: var(--bg-light);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .team-member h4 {
+            margin-bottom: 5px;
+        }
+
+        .team-member span {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* --- REFLECTION CHAT --- */
+        .reflection-chat {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .chat-message {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .chat-message.user .chat-avatar {
+            background-color: var(--accent-color);
+        }
+
+        .chat-bubble {
+            background-color: #f5f5f5;
+            padding: 15px 20px;
+            border-radius: 15px;
+            max-width: 650px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .chat-message.user .chat-bubble {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .chat-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .chat-message.user .chat-name {
+            color: var(--primary-color);
+            text-align: right;
+        }
+
+        /* --- PROTOTYPE GALLERY (New Section) --- */
+        .gallery-section {
+            background-color: var(--bg-light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Default: 3 per row */
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            max-width: 350px; /* Ensures they don't get too massive */
+            height: auto;
+            border-radius: 20px; /* Phone-like rounded corners */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            border: 6px solid #fff; /* Bezel effect */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+        }
+
+        /* --- TARGET USER / CALL TO ACTION --- */
+        .target-user {
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .target-user h2 {
+            color: var(--white);
+        }
+        
+        .target-user p {
+            color: #b2bec3;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* --- GRATITUDE SECTION --- */
+        .gratitude-section {
+            background-color: #f5f7ff;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .gratitude-section h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .gratitude-section p {
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* --- LANGUAGE TOGGLE --- */
+        .lang-toggle {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .lang-toggle:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #f1f1f1;
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr; /* 1 per row on mobile */
+                gap: 20px;
+            }
+
+            .team-member {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .reflection-chat {
+                padding: 20px;
+            }
+
+            .chat-bubble {
+                max-width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-padding {
+                padding: 40px 0;
+            }
+
+            .hero-tags {
+                flex-wrap: wrap;
+                gap: 10px;
+                font-size: 0.8rem;
+            }
+
+            .tag {
+                padding: 4px 12px;
+            }
+
+            /* ERD Section - Stack on mobile */
+            .erd-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Performance Metrics - Stack on mobile */
+            .performance-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Participant Demographics - Stack on mobile */
+            .demographics-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">DreamCart</div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#prototype">Prototype</a></li>
+                    <li><a href="#testing">Testing Plan</a></li>
+                    <li><a href="#contact" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Download App</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>The Ultimate<br><span>Wishlist Application</span></h1>
+            <p>Make your shopping experience pleasurable and organized. Search products, track gifts, and never lose your ideas again.</p>
+            <a href="#features" class="btn">Explore Features</a>
+            
+            <div class="hero-tags">
+                <span class="tag">Kotlin Native</span>
+                <span class="tag">Android Studio</span>
+                <span class="tag">ROOM Database</span>
+                <span class="tag">JetPack Compose</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="grid-2">
+                <div class="about-text">
+                    <h3>The Problem</h3>
+                    <p>Remember those times when you had to keep 20 tabs open just so you didn't forget your product ideas? It leads to clutter, lost data, and a stressful shopping experience.</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <h3>The Solution</h3>
+                        <p>With <strong>DreamCart</strong>, you can search existing products, save them to your library, and even manually add products from other websites via URL. All information is saved securely to our database, so your data is never lost, even if you close your browser or restart your phone.</p>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h4>Target Audience</h4>
+                    <p style="margin-top: 15px; color: var(--text-dark);">
+                        Designed for the modern online shopper. Age is irrelevant. If you value privacy, efficiency, and organization, DreamCart is for you.
+                    </p>
+                    <ul style="margin-top: 20px; padding-left: 20px;">
+                        <li style="margin-bottom: 10px;">✔ Mobile-first users</li>
+                        <li style="margin-bottom: 10px;">✔ Gift buyers & planners</li>
+                        <li>✔ Privacy-focused individuals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section-padding features">
+        <div class="container">
+            <h2 class="section-title">Minimalist & Powerful</h2>
+            <p class="section-subtitle">We combined a beautiful UI with the robust features you need to manage your shopping life.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h4>Search & Save</h4>
+                    <p>Search through existing products and save them instantly to your library. Keep track of everything in one place.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h4>Smart Gift Management</h4>
+                    <p>Mark items as gifts, assign them to specific people, and set due dates so you never miss a birthday or anniversary.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">✏️</div>
+                    <h4>Manual Entry</h4>
+                    <p>Can't find it in search? Manually add products, specify prices, upload images, set categories, and paste external URLs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h4>Integrated Calendar</h4>
+                    <p>Visualise your shopping timeline. The calendar tells you exactly when the next gift for someone needs to be bought.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Filters & Organization</h4>
+                    <p>Never struggle to find an item. Use our robust filtering system to sort your library by category, price, or date.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Data Persistence</h4>
+                    <p>Built with Kotlin, your data is synced to the database. Close the app, restart your phone, your wishlist remains safe.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="background: #e1e1e1; display: inline-block; padding: 10px 20px; border-radius: 50px; font-size: 0.9rem;">
+                    <strong>Bonus:</strong> Includes an improved Secret Santa System (Optional feature, not part of the official MVP)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">The Team</h2>
+            <p class="section-subtitle">The developers behind DreamCart.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar">PM</div>
+                    <h4>Paul-Adrian Moldovan</h4>
+                    <span>Developer</span>
+                </div>
+
+                <div class="team-member">
+                    <div class="avatar">GM</div>
+                    <h4>Geethika Madasekara</h4>
+                    <span>Developer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reflection" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Final Reflections</h2>
+            <p class="section-subtitle">Team members share their journey, challenges, and insights on the DreamCart project.</p>
+            
+            <div class="reflection-chat">
+                <!-- Paul's Message -->
+                <div class="chat-message">
+                    <div class="chat-avatar">PM</div>
+                    <div>
+                        <div class="chat-name">Paul-Adrian Moldovan</div>
+                        <div class="chat-bubble">
+                            <strong>Contribution:</strong> Led the architecture design, implemented the core app functionality with Kotlin and Jetpack Compose, not including the Calendar and the filters section. I managed to build and handle the API integration for product searches. Lastly, I created some basic Figma frames, which were later improved by Geethika and performed user testing and analysis.
+                            <br><br>
+                            <strong>Challenges:</strong> The biggest challenge was building the api, hosting it to the cloud, then successfully integrating it with the app. Being able to fetch and display the picture within the app was quite a big struggle. 
+                            <br><br>
+                            <strong>App vs Concept:</strong> The final app successfully meets our initial concept. We managed to implement all core features, like searching products, saving them to the wishlist, marking them within the calendar and building the right reminders to help you keep track.
+                            <br><br>
+                            <strong>Future Improvements:</strong> I'd love to use a public api, so we can fetch real products from different websites. Also, I would love to implement an integrated AI, so you can add a product by simply typing the url, then the AI fetches all the data for you.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Geethika's Message -->
+                <div class="chat-message user">
+                    <div class="chat-avatar">GM</div>
+                    <div>
+                        <div class="chat-name">Geethika Madasekara</div>
+                        <div class="chat-bubble">
+                            <strong>Contribution:</strong> Designed the complete UI/UX in Figma, created the design system, performed user testing and validation, and contributed to the database schema design and UI implementation in Compose.
+                            <br><br>
+                            <strong>Challenges:</strong> Translating our high-fidelity Figma designs to actual Compose code was tricky. We had to make some pragmatic adjustments for performance, but we maintained the visual integrity. Testing with real users revealed that some flows needed refinement.
+                            <br><br>
+                            <strong>App vs Concept:</strong> The app captures the essence of our concept beautifully. The interface is intuitive and clean as intended. The only thing we scaled back slightly was some advanced filtering options due to time constraints, but the MVP is solid.
+                            <br><br>
+                            <strong>Future Improvements:</strong> Adding dark mode would be great for late-night shoppers, implementing wishlist categories for organization, and perhaps a recommendation engine based on user preferences and browsing history.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shared Reflection -->
+                <div class="chat-message">
+                    <div class="chat-avatar" style="background-color: #00d2d3;">Both</div>
+                    <div>
+                        <div class="chat-name">Team Reflection</div>
+                        <div class="chat-bubble">
+                            <strong>Overall Experience:</strong> Working on DreamCart has been an incredible learning journey. We successfully bridged design and development, learned modern Android development practices, and built something we're genuinely proud of.
+                            <br><br>
+                            <strong>Key Takeaways:</strong> Communication between design and development was crucial. Starting with a solid Figma prototype saved us hours of back-and-forth. We also learned the importance of iterative testing and being flexible with our initial scope.
+                            <br><br>
+                            <strong>Final Words:</strong> DreamCart proves that with clear vision, good planning, and teamwork, you can build a polished, functional mobile app. We're excited to continue improving it and potentially publishing it to the Play Store!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prototype" class="section-padding gallery-section">
+        <div class="container">
+            <h2 class="section-title">Hi-Fi Figma Prototype</h2>
+            <p class="section-subtitle">A closer look at the application interface, design and user flow.</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="frame1.png" alt="App Screen 1"></div>
+                <div class="gallery-item"><img src="frame2.png" alt="App Screen 2"></div>
+                <div class="gallery-item"><img src="frame3.png" alt="App Screen 3"></div>
+                <div class="gallery-item"><img src="frame4.png" alt="App Screen 4"></div>
+                <div class="gallery-item"><img src="frame5.png" alt="App Screen 5"></div>
+                <div class="gallery-item"><img src="frame6.png" alt="App Screen 6"></div>
+                <div class="gallery-item"><img src="frame7.png" alt="App Screen 7"></div>
+                <div class="gallery-item"><img src="frame8.png" alt="App Screen 8"></div>
+                <div class="gallery-item"><img src="frame9.png" alt="App Screen 9"></div>
+                <div class="gallery-item"><img src="frame10.png" alt="App Screen 10"></div>
+                <div class="gallery-item"><img src="frame11.png" alt="App Screen 11"></div>
+                <div class="gallery-item"><img src="frame12.png" alt="App Screen 12"></div>
+                <div class="gallery-item"><img src="frame13.png" alt="App Screen 13"></div>
+                <div class="gallery-item" style="flex-direction: column;">
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary-color); font-size: 1.5rem;">
+                        Optional Feature
+                    </p>
+                    <img src="frame14.png" alt="App Screen 14">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="erd" class="section-padding" style="padding: 40px 0;">
+        <div class="container">
+            <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 30px;">Entity Relationship Diagram</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;" class="erd-grid">
+                <!-- Left: Image -->
+                <div style="display: flex; justify-content: center;">
+                    <img src="ERD.png" alt="Entity Relationship Diagram" style="max-width: 320px; max-height: 600px; height: auto; width: auto;">
+                </div>
+                <!-- Right: Description -->
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--primary-color);">Item Database Table</h3>
+                    <p style="color: var(--text-light); margin-bottom: 20px; line-height: 1.8;">
+                        The core entity of our application, storing comprehensive wishlist item information including:
+                    </p>
+                    <ul style="list-style: disc; margin-left: 20px; color: var(--text-light); line-height: 1.8;">
+                        <li><strong>Core Fields:</strong> ID, title, description, and price</li>
+                        <li><strong>Gift Management:</strong> Track whether an item is a gift and recipient details</li>
+                        <li><strong>Temporal Data:</strong> Due date, timestamp, and bought date</li>
+                        <li><strong>Media & Organization:</strong> Image path, URLs, and category classification</li>
+                        <li><strong>User Interaction:</strong> Notification read status for tracking updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testing" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Testing & Research</h2>
+            <p class="section-subtitle">Comprehensive usability testing to validate user experience and functionality.</p>
+
+            <div style="background: linear-gradient(135deg, #F0E6FF 0%, #E8DFF5 100%); padding: 25px 30px; border-radius: var(--radius); margin-bottom: 30px; border-left: 5px solid var(--primary-color); text-align: center;">
+                <p style="color: var(--primary-color); font-size: 1.05rem; font-weight: 500; margin: 0;">Access the comprehensive user testing documentation below, which includes detailed analysis, participant insights, and complete findings from our usability research.</p>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 40px;">
+                <a href="DCUserTesting.pdf" download="DCUserTesting.pdf" class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
+                    📥 Download Full Report
+                </a>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #E8DFF5 0%, #F5E6FF 100%); padding: 30px; border-radius: var(--radius); margin-bottom: 40px; border-left: 4px solid var(--primary-color);">
+                <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--primary-color);">Pilot Test</h3>
+                <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 10px;"><strong>3 Participants</strong> participated in an initial pilot test to validate our research instruments and gather preliminary feedback.</p>
+                <p style="color: var(--text-light); line-height: 1.8;">Based on their insights, we significantly <strong>improved the quality of our forms</strong> by enhancing task descriptions and providing more specific instructions, ensuring clarity and better user experience for the main study.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-bottom: 40px;">
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--primary-color);">Research Question</h3>
+                    <p style="color: var(--text-light); line-height: 1.8; font-size: 0.95rem;">Can users successfully and efficiently use the DreamCart app to add, manage, and track wishlist items and due dates, and do they perceive the app as usable and helpful for organizing planned purchases?</p>
+                </div>
+                <div style="background: var(--bg-light); padding: 30px; border-radius: var(--radius);">
+                    <h4 style="margin-bottom: 15px;">Test Overview</h4>
+                    <p style="font-weight: 600; color: var(--primary-color); font-size: 1.1rem;">8 Participants</p>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px;">In-person observation sessions, no counterbalancing</p>
+                    <h4 style="margin-top: 20px; margin-bottom: 15px;">Methods</h4>
+                    <ul style="padding-left: 20px; color: var(--text-light); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px;">✓ Direct observation</li>
+                        <li style="margin-bottom: 8px;">✓ Task-based testing</li>
+                        <li style="margin-bottom: 8px;">✓ SEQ questionnaire</li>
+                        <li>✓ SUS scoring</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: #f0e6ff; padding: 30px; border-radius: var(--radius); margin-bottom: 40px;">
+                <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--primary-color);">Performance Metrics</h3>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;" class="performance-grid">
+                    <div style="text-align: center;">
+                        <p style="font-size: 1.6rem; font-weight: 700; color: var(--primary-color); margin-bottom: 8px;">100%</p>
+                        <p style="font-weight: 600; color: var(--text-dark);">Task Completion</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">% of successful completions</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-size: 1.6rem; font-weight: 700; color: var(--primary-color); margin-bottom: 8px;">2-3</p>
+                        <p style="font-weight: 600; color: var(--text-dark);">Number of Errors</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">Per testing session</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-size: 1.6rem; font-weight: 700; color: var(--primary-color); margin-bottom: 8px;">5.72</p>
+                        <p style="font-weight: 600; color: var(--text-dark);">Perceived Difficulty</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">SEQ: 1 (Hard) - 7 (Easy)</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-size: 1.6rem; font-weight: 700; color: var(--primary-color); margin-bottom: 8px;">80.31</p>
+                        <p style="font-weight: 600; color: var(--text-dark);">System Usability</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">Average SUS score: 0-100</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 40px;">
+                <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: var(--primary-color);">Participant Demographics</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;" class="demographics-grid">
+                    <div style="background: var(--white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--primary-color); transition: all 0.3s ease;">
+                        <h5 style="font-weight: 700; margin-bottom: 12px; color: var(--text-dark); font-size: 1.1rem;">Age Group</h5>
+                        <ul style="padding-left: 0; color: var(--text-light); font-size: 0.95rem;">
+                            <li style="margin-bottom: 8px;">• 50% were 18-24</li>
+                            <li style="margin-bottom: 8px;">• 25% were 25-31</li>
+                            <li style="margin-bottom: 8px;">• 25% were 32-38</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--accent-color); transition: all 0.3s ease;">
+                        <h5 style="font-weight: 700; margin-bottom: 12px; color: var(--text-dark); font-size: 1.1rem;">Gender</h5>
+                        <ul style="padding-left: 0; color: var(--text-light); font-size: 0.95rem;">
+                            <li style="margin-bottom: 8px;">• 62.5% were Male</li>
+                            <li style="margin-bottom: 8px;">• 37.5% were Female</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--primary-color); transition: all 0.3s ease;">
+                        <h5 style="font-weight: 700; margin-bottom: 12px; color: var(--text-dark); font-size: 1.1rem;">Highest completed level of education</h5>
+                        <ul style="padding-left: 0; color: var(--text-light); font-size: 0.95rem;">
+                            <li style="margin-bottom: 8px;">• 50% Secondary / High School</li>
+                            <li style="margin-bottom: 8px;">• 25% Bachelor's degree</li>
+                            <li style="margin-bottom: 8px;">• 12.5% Vocational training</li>
+                            <li style="margin-bottom: 8px;">• 12.5% Master's degree</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--accent-color); transition: all 0.3s ease;">
+                        <h5 style="font-weight: 700; margin-bottom: 12px; color: var(--text-dark); font-size: 1.1rem;">Field of work or study</h5>
+                        <ul style="padding-left: 0; color: var(--text-light); font-size: 0.95rem;">
+                            <li style="margin-bottom: 8px;">• 50% Information Technology</li>
+                            <li style="margin-bottom: 8px;">• 50% Other</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--primary-color); transition: all 0.3s ease;">
+                        <h5 style="font-weight: 700; margin-bottom: 12px; color: var(--text-dark); font-size: 1.1rem;">Mobile App Usage</h5>
+                        <ul style="padding-left: 0; color: var(--text-light); font-size: 0.95rem;">
+                            <li style="margin-bottom: 8px;">• 87.5% Several times a day</li>
+                            <li style="margin-bottom: 8px;">• 12.5% About once a day</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--accent-color); transition: all 0.3s ease;">
+                        <h5 style="font-weight: 700; margin-bottom: 12px; color: var(--text-dark); font-size: 1.1rem;">Wishlist App Experience</h5>
+                        <ul style="padding-left: 0; color: var(--text-light); font-size: 0.95rem;">
+                            <li style="margin-bottom: 8px;">• 62.5% Never used</li>
+                            <li style="margin-bottom: 8px;">• 12.5% Used occasionally</li>
+                            <li style="margin-bottom: 8px;">• 12.5% Used a few times</li>
+                            <li style="margin-bottom: 8px;">• 12.5% Not sure / Don't remember</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--primary-color); transition: all 0.3s ease;">
+                        <h5 style="font-weight: 700; margin-bottom: 12px; color: var(--text-dark); font-size: 1.1rem;">Digital Skills</h5>
+                        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 8px;">Scale: 1 (Lowest) - 5 (Highest)</p>
+                        <ul style="padding-left: 0; color: var(--text-light); font-size: 0.95rem;">
+                            <li style="margin-bottom: 8px;">• 25% rated as 3</li>
+                            <li style="margin-bottom: 8px;">• 50% rated as 4</li>
+                            <li style="margin-bottom: 8px;">• 25% rated as 5</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: var(--primary-color);">10 Core Test Tasks</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 1: Manual Item Addition</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Add item with picture for friend's birthday gift</p>
+                    </div>
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 2: Product Shop Browse</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Browse product shop and add desired item to wishlist</p>
+                    </div>
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 3: Edit & Delete Items</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Modify or remove an unwanted item</p>
+                    </div>
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 4: Category Filter</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Filter items by category (Electronics)</p>
+                    </div>
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 5: Date Filter</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Filter items for upcoming week</p>
+                    </div>
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 6: Light Mode</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Switch to light mode theme</p>
+                    </div>
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 7: Notifications</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Check notifications screen and mark a product as bought</p>
+                    </div>
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 8: Undo Action</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Check history notifications and undo the previous purchase</p>
+                    </div>
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 9: Monthly View</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Check schedule for current & next month</p>
+                    </div>
+                    <div style="background: var(--white); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">Task 10: Calendar Details</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">View product details on due dates</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px;">
+                <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: var(--primary-color);">Nielsen's 10 Usability Heuristics</h3>
+                <div style="background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); color: var(--white);">
+                                <th style="padding: 16px 20px; text-align: left; font-weight: 600; font-size: 0.95rem;">Heuristic</th>
+                                <th style="padding: 16px 20px; text-align: left; font-weight: 600; font-size: 0.95rem;">Where Applied</th>
+                                <th style="padding: 16px 20px; text-align: center; font-weight: 600; font-size: 0.95rem;">Frequency</th>
+                                <th style="padding: 16px 20px; text-align: center; font-weight: 600; font-size: 0.95rem;">Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e8e8e8;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">Visibility of System Status</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">Product Item Screen</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">0</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">0</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e8e8e8; background: #fafafa;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">Match between System and Real World</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">Shop Detail Screen (Importing products)</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">2</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">2</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e8e8e8;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">User Control and Freedom</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">Main Screen Stats Icon</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">1</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">1</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e8e8e8; background: #fafafa;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">Consistency and Standards</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">Main Screen and Product Shop Screen</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">1</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">1</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e8e8e8;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">Error Prevention</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">Filters (Main + Product Shop Screens)</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">2</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">1</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e8e8e8; background: #fafafa;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">Recognition rather than Recall</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">Notifications + History Screen</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">3</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">2</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e8e8e8;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">Flexibility and Efficiency of Use</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">Product Item Screen + Notifications + History Screen</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">2</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">0</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e8e8e8; background: #fafafa;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">Aesthetic and Minimalist Design</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">History + Notification Screens</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">4</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">2</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e8e8e8;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">Help Users Recognize, Diagnose and Recover from Errors</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">Main Screen</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">2</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light); background: #f5f5f5;">1</td>
+                            </tr>
+                            <tr style="background: #fafafa;">
+                                <td style="padding: 14px 20px; color: var(--text-dark); font-weight: 500;">Help and Documentation</td>
+                                <td style="padding: 14px 20px; color: var(--text-light);">Main Screen</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">1</td>
+                                <td style="padding: 14px 20px; text-align: center; color: var(--text-light);">3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 25px; padding: 20px; background: #f0e6ff; border-radius: var(--radius); border-left: 4px solid var(--primary-color);">
+                    <p style="color: var(--text-dark); line-height: 1.8; margin: 0;"><strong>Collaboration:</strong> Both Paul and Geethika worked together to identify the usability problems throughout the DreamCart application and collaboratively agreed on adding them to the heuristics table above.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="target-user section-padding">
+        <div class="container">
+            <h2>Ready to organize your shopping?</h2>
+            <p style="margin: 20px auto 40px;">Download DreamCart today and stop juggling browser tabs.</p>
+            <button class="btn" style="background-color: var(--white); color: var(--primary-color);" onclick="downloadAPK()">Download for Android</button>
+            
+            <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                <h3 style="color: var(--white); font-size: 1.3rem; margin-bottom: 30px; text-align: center;">Quick Links</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; max-width: 900px; margin: 0 auto;">
+                    <div style="background: rgba(255, 255, 255, 0.08); padding: 25px; border-radius: var(--radius); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p style="color: #00d2d3; font-weight: 600; margin-bottom: 10px; font-size: 0.95rem;">📄 Project Repository</p>
+                        <a href="https://git.nwt.fhstp.ac.at/cc241003/ccl3-ws2025" target="_blank" style="color: var(--white); text-decoration: none; word-break: break-all; font-size: 0.9rem; line-height: 1.5; transition: color 0.3s ease;" onmouseover="this.style.color='#00d2d3'" onmouseout="this.style.color='var(--white)'">https://git.nwt.fhstp.ac.at/cc241003/ccl3-ws2025</a>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.08); padding: 25px; border-radius: var(--radius); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p style="color: #00d2d3; font-weight: 600; margin-bottom: 10px; font-size: 0.95rem;">📁 GitLab Code Source</p>
+                        <a href="https://git.nwt.fhstp.ac.at/cc241003/ccl3-ws2025/-/tree/master/code?ref_type=heads" target="_blank" style="color: var(--white); text-decoration: none; word-break: break-all; font-size: 0.9rem; line-height: 1.5; transition: color 0.3s ease;" onmouseover="this.style.color='#00d2d3'" onmouseout="this.style.color='var(--white)'">https://ccl3-ws2025-3dd375.pages.nwt.fhstp.ac.at</a>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.08); padding: 25px; border-radius: var(--radius); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p style="color: #00d2d3; font-weight: 600; margin-bottom: 10px; font-size: 0.95rem;">📁 GitLab Pages Source</p>
+                        <a href="https://git.nwt.fhstp.ac.at/cc241003/ccl3-ws2025/-/tree/master/public?ref_type=heads" target="_blank" style="color: var(--white); text-decoration: none; word-break: break-all; font-size: 0.9rem; line-height: 1.5; transition: color 0.3s ease;" onmouseover="this.style.color='#00d2d3'" onmouseout="this.style.color='var(--white)'">https://git.nwt.fhstp.ac.at/cc241003/ccl3-ws2025/-/tree/master/public</a>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.08); padding: 25px; border-radius: var(--radius); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p style="color: #00d2d3; font-weight: 600; margin-bottom: 10px; font-size: 0.95rem;">🎨 Figma Prototype</p>
+                        <a href="https://www.figma.com/design/FaQmwZjQ9VT3JQbD6QmoWR/CCL3_WS2025_Paul_Geethika?node-id=0-1&p=f&t=TuDlCSk8seL86MtH-0" target="_blank" style="color: var(--white); text-decoration: none; word-break: break-all; font-size: 0.9rem; line-height: 1.5; transition: color 0.3s ease;" onmouseover="this.style.color='#00d2d3'" onmouseout="this.style.color='var(--white)'">View Figma Design System</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gratitude-section">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="flex: 1;">
+                <h2 id="gratitudeTitle">Agradecimentos</h2>
+                <p id="gratitudeText">
+                    Aqui, gostaríamos de agradecer ao Victor, e ao outro Victor por sempre nos ajudarem com as informações que precisávamos. Nós nos divertimos desenvolvendo nosso App Mobile e ficamos muito felizes em fazer parte do Creative Code Lab 3!!!
+                </p>
+            </div>
+            <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">🌐 EN</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 DreamCart Application. All rights reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">Mobile App concept built with Kotlin.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'pt';
+
+        function downloadAPK() {
+            const link = document.createElement('a');
+            link.href = 'app-debug.apk';
+            link.download = 'app-debug.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function toggleLanguage() {
+            const button = document.getElementById('langToggle');
+            const gratitudeTitle = document.getElementById('gratitudeTitle');
+            const gratitudeText = document.getElementById('gratitudeText');
+
+            if (currentLanguage === 'pt') {
+                currentLanguage = 'en';
+                button.textContent = '🇧🇷 PT';
+                gratitudeTitle.textContent = 'Thank You';
+                gratitudeText.textContent = 'Here, we would like to thank Victor, and the other Victor for always helping us with the information we needed. We enjoyed developing our Mobile App and were very happy to be part of Creative Code Lab 3!!!';
+            } else {
+                currentLanguage = 'pt';
+                button.textContent = '🌐 EN';
+                gratitudeTitle.textContent = 'Agradecimentos';
+                gratitudeText.textContent = 'Aqui, gostaríamos de agradecer ao Victor, e ao outro Victor por sempre nos ajudarem com as informações que precisávamos. Nós nos divertimos desenvolvendo nosso App Mobile e ficamos muito felizes em fazer parte do Creative Code Lab 3!!!';
+            }
+        }
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
