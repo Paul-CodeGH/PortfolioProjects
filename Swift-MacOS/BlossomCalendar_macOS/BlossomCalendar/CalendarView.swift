@@ -341,6 +341,11 @@ struct CalendarView: View {
                 .transition(.opacity)
             }
         }
+        .onAppear {
+            let now = Date()
+            currentDate = now
+            selectedDate = now
+        }
     }
 
     // MARK: - Logic Helpers
@@ -428,10 +433,20 @@ struct DayCell: View {
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                     .fill(theme.highlight)
                     .shadow(color: theme.highlight.opacity(0.3), radius: 2, x: 0, y: 1)
+                
+                // If it's today and selected, add a special white inner border
+                if isToday {
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .stroke(Color.white.opacity(0.7), lineWidth: 2)
+                }
             } else if isToday {
-                // Today state: Ring
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .stroke(theme.accent.opacity(0.4), lineWidth: 1.5)
+                // Improved Today state: Vibrant border and soft background tint
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(theme.accent.opacity(0.12))
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .stroke(theme.accent, lineWidth: 2)
+                }
             } else if hasEvents {
                 // Event state: Soft blossom tint background
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
